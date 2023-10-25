@@ -102,10 +102,8 @@ class _CartScreenState extends State<CartScreen> {
             // margin: EdgeInsets.only(bottom: 50),
             height: screenSize.height * .80,
             child: ListView.builder(
-
               itemCount: value.list.length ?? 3,
               itemBuilder: (context, index) {
-
                 return Dismissible(
                   key: UniqueKey(),
                   direction: DismissDirection.horizontal,
@@ -126,7 +124,7 @@ class _CartScreenState extends State<CartScreen> {
           ),
           Container(
             height: 50,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.white,
               boxShadow: [
                 BoxShadow(
@@ -136,17 +134,20 @@ class _CartScreenState extends State<CartScreen> {
                     spreadRadius: 3)
               ],
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  const Text('Total: '),
+            child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+              const Text('Total: '),
               Consumer<CartProvider>(
-                  builder: (context, value, child) => Text(
-                        '৳${value.list.fold(0, (sum, item) => sum + item.price)}',
-                        style:
-                            TextStyle(fontSize: 17, color: Colors.deepOrange),
-                      ),),
-              const SizedBox(width: 10,),
+                builder: (context, value, child) => Text(
+                  '৳${value.list.fold(0, (sum, item) => sum + item.price)}',
+                  style: const TextStyle(
+                    fontSize: 17,
+                    color: Colors.deepOrange,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 10,
+              ),
               Consumer<CartProvider>(
                 builder: (context, value, child) => ElevatedButton(
                   style: ElevatedButton.styleFrom(
@@ -158,11 +159,13 @@ class _CartScreenState extends State<CartScreen> {
                   },
                   child: Text(
                     'Check out(${value.list.length})',
-                    style: TextStyle(color: Colors.white, fontSize: 16),
+                    style: const TextStyle(color: Colors.white, fontSize: 16),
                   ),
                 ),
               ),
-                  const SizedBox(width: 10,),
+              const SizedBox(
+                width: 10,
+              ),
             ]),
           ),
         ]),
